@@ -71,7 +71,7 @@ def get_categories():
 @bp.route("/categories", methods=["POST"])
 def add_category():
     data = request.get_json()
-    new = Category(id=data['id'], name=data['name'])
+    new = Category(name=data['name'])
     db.session.add(new)
     db.session.commit()
     return jsonify({"message": "Categoria adicionada!"}), 201

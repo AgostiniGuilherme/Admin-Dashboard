@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { UploadCloud } from "lucide-react";
+import { Upload, UploadCloud } from "lucide-react";
 import clsx from "clsx";
 
 const UploadCSV = () => {
@@ -35,7 +35,10 @@ const UploadCSV = () => {
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">⬆️ Upload de Arquivos CSV</h1>
+      <div className='flex items-center gap-2 mb-4'>
+        <Upload />
+        <h1 className="text-3xl font-bold text-gray-800 mb-1">Upload de Arquivos CSV</h1>
+      </div>
 
       <Card className="p-6 space-y-6 shadow-md">
         <label
@@ -81,7 +84,7 @@ const UploadCSV = () => {
           <Button
             onClick={() => handleUpload("/upload-sales-csv")}
             disabled={!file}
-            className="bg-purple-600 hover:bg-purple-700 text-white"
+            className="bg-red-700 hover:bg-red-900 text-white"
           >
             Enviar Vendas
           </Button>

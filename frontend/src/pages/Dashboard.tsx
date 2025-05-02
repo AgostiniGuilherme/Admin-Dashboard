@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { Card } from "@/components/ui/card";
+import { CircleDollarSign, LayoutDashboard, Package } from "lucide-react";
 
 interface Sale {
   date: string;
@@ -33,33 +34,41 @@ export default function Dashboard() {
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-    <h1 className="text-3xl font-bold text-gray-800 mb-6">📊 Dashboard</h1>
+      <div className="flex items-center gap-2 mb-6">
+        <LayoutDashboard />
+        <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
+      </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <Card className="p-6 shadow-md hover:shadow-lg transition">
-        <h2 className="text-xl font-semibold mb-4 text-blue-600">📦 Sales Quantity</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={data}>
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="quantity" fill="#60a5fa" radius={[4, 4, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
-      </Card>
-
-      <Card className="p-6 shadow-md hover:shadow-lg transition">
-        <h2 className="text-xl font-semibold mb-4 text-green-600">💰 Sales Profit</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={data}>
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="profit" fill="#34d399" radius={[4, 4, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
-      </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="p-6 shadow-md hover:shadow-lg transition bg-white">
+          <div className="flex items-center gap-2 mb-4">
+            <Package className="text-blue-600" />
+            <h2 className="text-xl font-semibold text-blue-600">Sales Quantity</h2>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={data}>
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="quantity" fill="#60a5fa" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </Card>
+        <Card className="p-6 shadow-md hover:shadow-lg transition bg-white">
+          <div className="flex items-center gap-2 mb-4">
+            <CircleDollarSign className="text-[#34d399]" />
+            <h2 className="text-xl font-semibold text-[#34d399]">Sales Profit</h2>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={data}>
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="profit" fill="#34d399" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </Card>
+      </div>
     </div>
-  </div>
-);
+  );
 }

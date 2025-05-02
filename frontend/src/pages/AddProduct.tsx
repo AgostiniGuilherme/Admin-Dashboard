@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, PackagePlus } from "lucide-react";
 
 interface Category {
   id: number;
@@ -52,8 +52,12 @@ export default function AddProduct() {
 
   return (
     <div className="p-8 min-h-screen bg-gray-100 flex items-center justify-center">
-    <Card className="w-full max-w-xl p-6 shadow-md space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800">📝 Cadastrar Novo Produto</h2>
+    <Card className="w-full max-w-xl p-6 shadow-md space-y-6 bg-white">
+      <div className='flex items-center gap-2 mb-0'>
+        <PackagePlus />
+        <h2 className="text-2xl font-bold text-gray-800">Cadastrar Novo Produto</h2>
+      </div>
+      
 
       {error && (
         <div className="flex items-center gap-2 text-red-600 bg-red-100 p-2 rounded-md">
@@ -64,7 +68,7 @@ export default function AddProduct() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
-          className="w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
+          className="bg-white w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
           type="text"
           placeholder="Nome"
           value={name}
@@ -73,7 +77,7 @@ export default function AddProduct() {
         />
 
         <input
-          className="w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
+          className="bg-white w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
           type="number"
           step="0.01"
           placeholder="Preço"
@@ -83,7 +87,7 @@ export default function AddProduct() {
         />
 
         <input
-          className="w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
+          className="bg-white w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
           type="text"
           placeholder="Marca"
           value={brand}
@@ -92,7 +96,7 @@ export default function AddProduct() {
         />
 
         <select
-          className="w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
+          className="bg-white w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
           value={categoryId}
           onChange={(e) => setCategoryId(e.target.value)}
           required
@@ -107,7 +111,7 @@ export default function AddProduct() {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors font-semibold"
+          className="w-full bg-cyan-700 text-white py-2 rounded hover:bg-cyan-900 transition-colors font-semibold"
         >
           Cadastrar Produto
         </button>
