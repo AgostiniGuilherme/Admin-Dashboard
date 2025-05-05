@@ -43,7 +43,7 @@ export default function Dashboard() {
         <Card className="p-6 shadow-md hover:shadow-lg transition bg-white">
           <div className="flex items-center gap-2 mb-4">
             <Package className="text-blue-600" />
-            <h2 className="text-xl font-semibold text-blue-600">Sales Quantity</h2>
+            <h2 className="text-xl font-semibold text-blue-600">Quantidade de Vendas</h2>
           </div>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={data}>
@@ -57,7 +57,7 @@ export default function Dashboard() {
         <Card className="p-6 shadow-md hover:shadow-lg transition bg-white">
           <div className="flex items-center gap-2 mb-4">
             <CircleDollarSign className="text-[#34d399]" />
-            <h2 className="text-xl font-semibold text-[#34d399]">Sales Profit</h2>
+            <h2 className="text-xl font-semibold text-[#34d399]">Receita das Vendas</h2>
           </div>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={data}>

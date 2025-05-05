@@ -23,7 +23,6 @@ def get_products():
 def add_product():
     data = request.get_json()
 
-    # Verifica se os dados necessários estão presentes
     if not data.get('name') or not data.get('price'):
       return jsonify({"error": "Nome e preço são obrigatórios."}), 400
 
@@ -120,7 +119,6 @@ def get_sales():
 def add_sale():
     data = request.get_json()
 
-     # Verifica se o produto existe no banco
     product = Product.query.get(data["product_id"])
     if not product:
         return jsonify({"error": "Produto não encontrado."}), 404
@@ -146,7 +144,6 @@ def upload_sales_csv():
         df = pd.read_csv(file)
 
         for _, row in df.iterrows():
-            # Verificar se o produto existe no banco de dados
             product = Product.query.get(row['product_id'])
 
             if product: 
@@ -154,9 +151,9 @@ def upload_sales_csv():
                     product_id=row['product_id'],
                     quantity=row['quantity'],
                     total_price=row['total_price'],
-                    date=pd.to_datetime(row['date']).date()  # Converte a data para o formato Date
+                    date=pd.to_datetime(row['date']).date()  
                 )
-                db.session.add(sale)  # Adicionar a venda à sessão
+                db.session.add(sale)  
 
         db.session.commit()
 
@@ -193,29 +190,25 @@ def get_profit():
     
     return jsonify(profit_data)
 
-# @bp.route("/sales/by-period", methods=["GET"])
-# def get_sales_by_period():
-#     start_date = request.args.get('start_date')
-#     end_date = request.args.get('end_date')
+@bp.route("/sales/<int:sale_id>", methods=["PUT"])
+def update_sale(sale_id):
+    data = request.get_json()
+    sale = Sale.query.get_or_404(sale_id)
 
-#     if not start_date or not end_date:
-#         return jsonify({"error": "Datas de início e fim são obrigatórias."}), 400
+    try:
+        sale.quantity = data.get("quantity", sale.quantity)
+        sale.total_price = data.get("total_price", sale.total_price)
+        db.session.commit()
 
-#     # Converte as datas para o formato de data
-#     start_date = pd.to_datetime(start_date).date()
-#     end_date = pd.to_datetime(end_date).date()
-
-#     sales = Sale.query.filter(Sale.date >= start_date, Sale.date <= end_date).all()
-
-#     return jsonify([
-#         {
-#             "sale_id": sale.id,
-#             "product": sale.product.name,
-#             "quantity": sale.quantity,
-#             "total_price": sale.price,
-#             "date": sale.date.strftime('%Y-%m-%d')
-#         } for sale in sales
-#     ])
+        return jsonify({
+            "id": sale.id,
+            "product_id": sale.product_id,
+            "quantity": sale.quantity,
+            "total_price": sale.total_price
+        })
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
 
 @bp.route("/sales/by-category", methods=["GET"])
 def get_sales_by_category():

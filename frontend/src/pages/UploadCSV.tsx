@@ -74,6 +74,14 @@ const UploadCSV = () => {
         />
 
         <div className="flex gap-4">
+        <Button
+            onClick={() => handleUpload("/upload-categories-csv")}
+            disabled={!file}
+            className="bg-gray-700 hover:bg-gray-900 text-white"
+          >
+            Enviar Categorias
+          </Button>
+
           <Button
             onClick={() => handleUpload("/upload-products-csv")}
             disabled={!file}
