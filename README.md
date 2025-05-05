@@ -83,11 +83,16 @@ A arquitetura foi projetada para fornecer insights acionáveis através de pain�
 ### 🔄 1. Clone o projeto
 
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repo.git
-cd nome-do-repo
+git clone https://github.com/AgostiniGuilherme/Admin-Dashboard.git
+cd Admin-Dashboard
 ```
 
 ### 2️⃣ Configure o Backend (Flask)
+Acesse o diretório do backend 
+```bash
+cd backend
+'Admin-Dashboard/backend'
+```
 Criação do ambiente virtual
 ```bash
 python -m venv venv
@@ -114,6 +119,11 @@ python app.py
 ```
 
 ### 3️⃣ Configure o Frontend (React)
+Acesse o diretório do frontend
+```bash
+cd frontend
+'Admin-Dashboard/frontend'
+```
 
 Para instalar as dependências do frontend,
 No diretório /frontend, execute:
