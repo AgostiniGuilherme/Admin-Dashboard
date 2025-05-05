@@ -115,7 +115,7 @@ pip install -r requirements.txt
 
 Rode a aplicação
 ```bash
-python app.py
+python main.py
 ```
 
 ### 3️⃣ Configure o Frontend (React)
